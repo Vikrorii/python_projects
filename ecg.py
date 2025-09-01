@@ -9,7 +9,7 @@ def gauss(t, A, mu, b1, b2):
     b = np.where(t < mu, b1, b2)
     return A * np.exp(-((t - mu) ** 2) / (2 * b ** 2))
 
-# Функція генерації графіка ЕКГ (один цикл)
+# Функція генерації графіка ЕКГ(один цикл)
 def generate_ecg(*args):
     global last_valid_values
     HC = hc_slider.get()
@@ -59,7 +59,7 @@ def generate_ecg(*args):
            gauss(t, AT, mu_T, b1_T, b2_T))
 
     ax.clear()
-    ax.plot(t / 1000, ecg, label='ЕКГ', linewidth=1)  # Переводим время в секунды
+    ax.plot(t / 1000, ecg, label='ЕКГ', linewidth=1)  #переводимо час в секунди
     ax.set_title("ЕКГ модель")
     ax.set_xlabel('Час (с)')
     ax.set_ylabel('Амплітуда (мВ)')
@@ -141,7 +141,7 @@ def open_generation_window():
     canvas_gen = FigureCanvasTkAgg(fig_gen, master=generation_window)
     # Зміна ширини та висоти для canvas
     canvas_gen.get_tk_widget().config(width=1800,
-                                      height=400)  # Ви можете змінити ці значення, щоб отримати більшу ширину
+                                      height=400)  #Можна змінити ці значення, щоб отримати більшу ширину
 
     canvas_gen.get_tk_widget().pack(pady=10)
 
@@ -181,11 +181,11 @@ def open_generation_window():
         ecg_signal += noise
 
         ax_gen.clear()
-        ax_gen.plot(t / 1000, ecg_signal, linewidth=1)  # Переводим время в секунды
+        ax_gen.plot(t / 1000, ecg_signal, linewidth=1)
 
-        # Уменьшаем масштаб оси X (время) и оси Y (амплитуда)
-        ax_gen.set_xlim([0, t[-1] / 1000])  # Ограничение по оси времени (секунды)
-        ax_gen.set_ylim([np.min(ecg_signal) * 1.1, np.max(ecg_signal) * 1.1])  # Ограничение по амплитуде
+        # Зменшуємо масштаб осі X (час) и осі Y (амплітупд)
+        ax_gen.set_xlim([0, t[-1] / 1000])
+        ax_gen.set_ylim([np.min(ecg_signal) * 1.1, np.max(ecg_signal) * 1.1])  # 
 
         ax_gen.set_title("ЕКГ з альтернацією зубця T")
         ax_gen.set_xlabel('Час (с)')
